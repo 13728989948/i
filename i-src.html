@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1.0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="expires" content="expires" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="imagetoolbar" content="false" />
+<meta http-equiv="cache-control" content="no-store, must-revalidate, no-cache" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<style>
+body{padding:0;margin:0;background-color:#F6F5F1;}
+img{margin:0;padding:0;float:left;border:none;}
+</style>
+</head>
+<body>
+<script>
+var sec = "pa=";
+var body = document.body;
+var locSe = location.search;// 最大65472个字符
+if (locSe.indexOf(sec) != -1) {
+	var pas = locSe.substring(locSe.indexOf(sec) + sec.length, locSe.length);
+	var paArr = pas.split("Hyu");
+	if (paArr) {
+		var maxImgWidth = window.innerWidth;
+		var len = paArr.length;
+		for (var i = 0; i < len; i++) {
+			var sin = paArr[i];
+
+			var image = new Image();
+			image.src = sin.replace(/(^\s*)|(\s*$)/g, "");
+			image.style.maxWidth = maxImgWidth + "px";
+			body.appendChild(image);
+
+			image.onload = function() {
+				var imgWidth = this.width;
+				var widthNew = imgWidth;
+				var halfMaxWidth = maxImgWidth / 2;// 一半
+				if ((halfMaxWidth <= imgWidth) && imgWidth < maxImgWidth) {
+					widthNew = halfMaxWidth;
+				}
+				this.width = widthNew;
+			};
+		}
+	}
+}
+</script>
+</body>
+</html>
